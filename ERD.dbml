@@ -1,0 +1,67 @@
+Table employees {
+    id int [pk]
+    name varchar
+    email varchar
+    hourlyRate int
+}
+
+Table customers {
+    id int [pk]
+    name varchar
+    email varchar
+
+}
+
+Table customerCards {
+    id int [pk]
+    customerId int [ref: > customers.id]
+    cardNumber int
+    expirationDate int
+    securityCode int
+    zipCode int
+}
+
+Table products {
+    id int [pk]
+    name varchar
+    price int
+}
+
+Table orders {
+    id int [pk]
+    productId int [ref: > products.id]
+    employeeId int [ref: > employees.id]
+    locationId int [ref: > locations.id]
+    timeStamp int
+}
+
+Table locations {
+    id int [pk]
+    location varchar
+}
+
+Table employeeLocations {
+    employeeId int [ref: > employees.id]
+    locationId int [ref: > locations.id]
+}
+
+Table productLocations {
+    locationsId int [ref: > locations.id]
+    productsId int [ref: > products.id]
+}
+
+Table productRating {
+    id int [pk]
+    productId int [ref: > products.id]
+    customerId int [ref: > customers.id]
+    rating int
+    timeStamp int
+}
+
+Table locationRecs {
+    id int [pk]
+    customerId int [ref: > customers.id]
+    locationId int [ref: > locations.id]
+    recommendations varchar
+    timeStamp int
+}
